@@ -46,14 +46,15 @@ app.post("/",function(req,res){
                    res.sendFile(__dirname +"/success.html");
                    
                }else{
-                   res.sendFile(__dirname+"/failure.html");
+                res.sendFile(__dirname+"/failure.html");
                }
+           
                
             response.on("data",function(data){
             console.log(JSON.parse(data));
         })
         
-    })
+    });
            request.write(jsonData);
     request.end();
         
@@ -61,10 +62,10 @@ app.post("/",function(req,res){
 });
 app.post("/failure",function(req,res){
     res.redirect("/");
-})
+});
 
-app.listen(process.env.PORT || 3000,function(){ //process.env.PORT ||
+app.listen(process.env.PORT ||  3000,function(){ //process.env.PORT ||
     console.log("server is running on port 3000");
 });
-//131de9d0b948ab028d241beef31cff96-us18
+//131de9d0b948ab028d241beef31cff9
 //list Id dd61405f13
