@@ -63,6 +63,9 @@ app.post("/",function(req,res){
 app.post("/failure",function(req,res){
     res.redirect("/");
 });
+new Promise((resolve, reject) => {
+  return reject('Error reason!');
+}).then(null, () => { /* do whatever you want here */ });
 
 app.listen(process.env.PORT ||  3000,function(){ //process.env.PORT ||
     console.log("server is running on port 3000");
