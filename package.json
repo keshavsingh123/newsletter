@@ -13,5 +13,13 @@
     "express": "^4.17.1",
     "request": "^2.88.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keshavsingh123/newsletter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/keshavsingh123/newsletter/issues"
+  },
+  "homepage": "https://github.com/keshavsingh123/newsletter#readme"
 }
