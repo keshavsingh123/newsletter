@@ -42,20 +42,19 @@ app.post("/",function(req,res){
         }
            const request= https.request(url,option,function(response){
                
-               if(response.statusCode===200){
-                   res.sendFile(__dirname +"/success.html");
-                   
-               }else{
-                res.sendFile(__dirname+"/failure.html");
+     if(response.statusCode===200){
+       res.sendFile(__dirname +"/success.html");
+      }else{
+      res.sendFile(__dirname+"/failure.html");
                }
            
                
-            response.on("data",function(data){
-            console.log(JSON.parse(data));
+ response.on("data",function(data){
+      console.log(JSON.parse(data));
         })
         
     });
-           request.write(jsonData);
+  request.write(jsonData);
     request.end();
         
     
@@ -63,10 +62,30 @@ app.post("/",function(req,res){
 app.post("/failure",function(req,res){
     res.redirect("/");
 });
-new Promise((resolve, reject) => {
-  return reject('Error reason!');
-}).then(null, () => { /* do whatever you want here */ });
 
+ function emitWarning(uid, reason) { 
+   const warning = new Error( 
+     `Unhandled promise rejection (rejection id: ${uid}): ` + 
+     safeToString(reason)); 
+   warning.name = 'UnhandledPromiseRejectionWarning'; 
+   warning.id = uid; 
+   try { 
+     if (reason instanceof Error) { 
+       warning.stack = reason.stack; 
+     } 
+   } catch (err) { 
+     // ignored 
+   } 
+   process.emitWarning(warning); 
+   if (!deprecationWarned) { 
+     deprecationWarned = true; 
+     process.emitWarning( 
+       'Unhandled promise rejections are deprecated. In the future, ' + 
+       'promise rejections that are not handled will terminate the ' + 
+       'Node.js process with a non-zero exit code.', 
+       'DeprecationWarning', 'DEP0018'); 
+   } 
+ } 
 app.listen(process.env.PORT ||  3000,function(){ //process.env.PORT ||
     console.log("server is running on port 3000");
 });
